@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit</title>
+</head>
+<body>
+    <form  th:action="@{/admin/edit/{id}(id=${user.getId()})}" th:object="${user}" method="post">
+
+
+    <table border="1" width="16%">
+        <tr><th>Parameter</th><th>Field</th></tr>
+
+        <th:block>
+
+            <!--        <input type="hidden" name="id" value="${user.id}">-->
+            <tr>
+                <td><label for="username">Username</label></td>
+                <td><input type="text" name="username" th:field="*{username}" id="username"></td>
+            </tr>
+            <tr>
+                <td><label for="passsword">Password</label></td>
+                <td><input type="text" name="password1" th:field="*{password}" id="passsword"></td>
+            </tr>
+            <tr>
+                <td><label>Roles</label></td>
+                <td>
+
+                    <div  th:each="roleA : ${allRoles}" >
+                        <input type="checkbox"  th:field="*{roles}" th:value="${roleA}" />
+                        <span th:text="${roleA}" th:remove="tag"> </span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="name">Name</label></td>
+                <td><input type="text" name="name"  th:field="*{name}" id="name"></td>
+            </tr>
+            <tr>
+                <td><label for="year">Year</label></td>
+                <td><input type="text" name="year" th:field="*{year}" id="year"></td>
+            </tr>
+            <tr>
+                <td><label for="address">Address</label></td>
+                <td><input type="text" name="address" th:field="*{address}" id="address"></td>
+            </tr>
+        </th:block>
+
+    </table>
+    <br>
+    <input type="submit" value="Edit user">
+
+</form>
+</body>
+</html>
